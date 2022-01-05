@@ -1,0 +1,45 @@
+﻿@*Jako model podajemy Category, dzieki czemu Nasz widok wie, jakich atrybutow i danych moze sie spodziewac
+    oraz co ciekawe, pozwala nam na weryfikacje poprawnosci wprowadzonych danych
+*@
+@model Category
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+            <hr />
+        </div>
+        @*
+            Zamiast dodawac po kolei do kazdego pola pojedyncze asp-validation-for mozemy dodac obiekt widoczny ponidej,
+            ktory w sposob zbiorowy pokaze wszystkie komunikaty
+        *@
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="mb-3">
+            @*asp-for sam sprawdza co to jest za pole klasy Category i uzupelnia odpowiednie dane dla uzytkownika koncowego*@
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            @*
+                asp-validation-for to tag ktory umozliwia nam weryfikacje za pomoca przygotowanego Partial View czy dana pozycja jest uzupelniona
+                i jesli nie jest, to wyswietla nam komunikat w tym miejscu
+            *@
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        @*
+            Poniewz button jest typu submit to po jego kliknieciu zostanie wywolana metoda POST o nazwie domyslnej Create, poniewaz ta nazwa zwraca nam ta strone
+            Mozemy zawsze to zmienic dodajac na gorze zapis <form method="post" asp-action="NazwaMetody">
+        *@
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        @*
+            Tutaj mamy zamiast przycisku link, poniewaz link tylko wysyla komende GET z prosba o zwrocenie strony. W tym przypadku zwracamy
+            nasza strone odpowiedzialna za wyswietlenie wszysktich kategorii
+        *@
+        <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to list</a>
+    </div>
+</form>
+
+@*Jesli chcemy dodac walidacje do front-end, by strona nie laczyla sie z serwerem poki wszystko nie bedzie okej, to dodajemy partial view z walidacja*@
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
