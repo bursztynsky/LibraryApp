@@ -5,8 +5,9 @@
 
 #--
 # Appsettings.json
-LibraryApp.Web/appsettings.json
-
+# LibraryApp.Web/appsettings.json
+# Migrations folder
+LibraryApp.DataAccess/Migrations/
 #--
 
 # User-specific files
