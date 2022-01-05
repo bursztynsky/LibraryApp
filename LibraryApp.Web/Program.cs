@@ -17,6 +17,7 @@ var app = builder.Build();
 // Kiedy przegladarka wysyla zapytanie do aplikacji to trafia do pipeline
 // W samym pipeline znajduja sie middleware czyli mniejsze komponenty aplikacji odpowiedzialne za konkretne zadanie np. autoryzacje
 // Wszystkie te obiekty napisane miedzy builder.Build() oraz app.Run() to sa middleware!
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
